@@ -31,8 +31,7 @@ class Netflix:
                  "ORDER BY release_year desc "
                  "LIMIT 1")
 
-        movie = Netflix()
-        response = movie.get_sql_one(query)
+        response = self.get_sql_one(query)
         show_data = {"title": response[0],
                      "country": response[1],
                      "release_year": response[2],
@@ -53,8 +52,7 @@ class Netflix:
                  f"AND  release_year BETWEEN {first_year} AND {second_year} "
                  "ORDER BY release_year "
                  "LIMIT 100")
-        movie = Netflix()
-        responses = movie.get_sql_all(query)
+        responses = self.get_sql_all(query)
         data = []
         for response in responses:
             movie_data = {"title": response[0], "release_year": response[1]}
@@ -81,8 +79,7 @@ class Netflix:
         query = ("SELECT title, rating, description "
                  "FROM netflix "
                  f"WHERE rating in {request_rating} ")
-        movie = Netflix()
-        responses = movie.get_sql_all(query)
+        responses = self.get_sql_all(query)
         data = []
         for response in responses:
             movie_data = {"title": response[0],
@@ -102,8 +99,7 @@ class Netflix:
                  "ORDER BY release_year desc "
                  "LIMIT 10")
 
-        movie = Netflix()
-        responses = movie.get_sql_all(query)
+        responses = self.get_sql_all(query)
         data = []
         for response in responses:
             show_data = {"title": response[0],
